@@ -39,10 +39,6 @@ int main(int argc , char *argv[])
     while ((bytesRead = read(fd ,buffer, sizeof(buffer))) > 0){
       // write to stdout  
       write(1, buffer,bytesRead); 
-
-        if (bytesRead == 0){
-          break;
-        }
     }
 
     if (bytesRead == -1){
