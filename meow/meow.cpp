@@ -14,6 +14,7 @@
 
 
 
+
 int main(int argc , char *argv[])
 {
       //system(""); ------>  Enable for Windows!!!
@@ -27,16 +28,38 @@ int main(int argc , char *argv[])
         std::cout << RED << "USAGE: " << RESET << GREEN << "./meow {filename}" << RESET << "\n";
         exit(1);
       }
+      
+      //loooooopieee
+    for (int i = 1 ; i < argc ; i++){
 
-    int fd = open(argv[1], O_RDONLY);
+        int fd = open(argv[i], O_RDONLY);
+
+        if (fd == -1){
+          std::cout << RED << "ERROR OPENING FILE! " << i << RESET << "\n";
+          exit(1);
+        }
+
+       // bytesRead = read(fd , buffer , sizeof(buffer));
+        while((bytesRead = read(fd , buffer, sizeof(buffer))) > 0){
+        write(1 , buffer , bytesRead);
+        }
+        if (bytesRead == -1){
+          std::cout << RED << "Error Reading File!" << i << RESET << "\n";
+          exit(1);
+        }
+        std::cout << "\n";
+        close(fd);
+    }
+    /*int fd = open(argv[1], O_RDONLY);
 
     if (fd == -1){
       std::cout << RED << "Error Opening File!" << RESET << "\n";
       exit(1);
     } // Erroor Opening File!!!
-    
+                  
+    bytesRead = read(fd,buffer,sizeof(buffer));
 
-    while ((bytesRead = read(fd ,buffer, sizeof(buffer))) > 0){
+    while (bytesRead > 0){
       // write to stdout  
       write(1, buffer,bytesRead); 
     }
@@ -48,4 +71,6 @@ int main(int argc , char *argv[])
 
     close(fd);
     return 0;
+   }
+   */  
 }
