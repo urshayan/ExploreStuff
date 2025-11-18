@@ -35,7 +35,7 @@ int main(int argc , char *argv[])
         int fd = open(argv[i], O_RDONLY);
 
         if (fd == -1){
-          std::cout << RED << "ERROR OPENING FILE! " << i << RESET << "\n";
+          std::cout << RED << "ERROR OPENING FILE! "  << RESET << "\n";
           exit(1);
         }
 

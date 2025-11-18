@@ -1,0 +1,48 @@
+#include <iostream>
+#include <fcntl.h>
+#include <unistd.h>
+
+
+int main(int argc , char *argv[]){
+
+  /// Needs to have atleast three arguments!
+  if (argc != 3){
+    std::cout << "USAGE: ./cloneit {source}{dest} \n";
+    return 1;
+  }
+
+  // File Descriptor for the source file!!!
+  int src = open(argv[1], O_RDONLY);
+
+  // Handle Error if file opening fails or doesnt exist
+  if (src < 0){
+    std::cout << "Error Opening File! \n";
+    return 1;
+  }
+
+  // File Descripto for Destination file create one if 
+  // it doesnt exist!
+  int dest = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC , 0644);
+
+  //Handle error if dest file doesnt loads up ..or fails miserably!
+  if (dest < 0){
+    std::cout << "Error Opening Dest File! \n";
+    return 1;
+  }
+
+  /// 1MB enough space....no one writes 2000000000 line of code!
+  char buffer[1024];
+  int bytesRead;
+
+
+  // Main loop to read the date from source and write it to dest!
+  while((bytesRead = read(src,buffer,sizeof(buffer))) > 0){
+    write(dest, buffer, bytesRead);
+  }
+
+  // close the file respectively!!!
+close(src);
+close(dest);
+
+return 0;
+}
