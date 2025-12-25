@@ -6,5 +6,5 @@ Mini Codes/Projetcs/Implementations of when i want to explore something or M jus
 1. Implemented simple SHA256 hash on a sample text and a file using hashlib
 2. Implemented an Alternative to cat .. MEOW!... that behaves like cat command
 3. Implemented an alternative to copy....CloneIt... that acts like cp command!
-
+4. Implemented a Github Account State Fetcher in Ruby!
 more to come.......
